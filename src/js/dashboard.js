@@ -743,7 +743,7 @@ function renderCipherSheet(container, sheet, rows) {
         </svg>
       </div>
       <div class="cipher-banner-info">
-        <h2>Encryption System</h2>
+    <h2>Encryption System</h2>
         <p>Cipher Reference Sheet — Shape Code System</p>
       </div>
     </div>
