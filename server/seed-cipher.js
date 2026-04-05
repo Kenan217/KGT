@@ -12,17 +12,17 @@ async function seedCipher() {
      Shapes: ▲ △ ● ○ ■ □ ◆ ◇
      ═══════════════════════════════════════════ */
 
-  const existing = await Sheet.findOne({ name: 'Cipher Codes' });
+  const existing = await Sheet.findOne({ name: 'Encryption Codes' });
   if (existing) {
     await Row.deleteMany({ sheetId: existing._id });
     await Sheet.findByIdAndDelete(existing._id);
-    console.log('🗑️  Old Cipher Codes sheet removed');
+    console.log('🗑️  Old Encryption Codes sheet removed');
   }
 
   const count = await Sheet.countDocuments();
 
   const cipherSheet = await Sheet.create({
-    name: 'Cipher Codes',
+    name: 'Encryption Codes',
     order: count,
     columns: [
       { key: 'letter', label: 'الحرف / Letter', type: 'text', width: 120 },
@@ -99,7 +99,7 @@ async function seedCipher() {
     });
   }
 
-  console.log('✅ Cipher Codes sheet created with', letters.length + numbers.length, 'rows');
+  console.log('✅ Encryption Codes sheet created with', letters.length + numbers.length, 'rows');
   console.log('🎉 Done!');
   process.exit(0);
 }

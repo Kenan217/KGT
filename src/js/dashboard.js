@@ -149,7 +149,7 @@ function updatePageInfo() {
   const { sheet, rows } = currentSheetData;
   document.getElementById('page-title').textContent = sheet.name;
 
-  const isCipher = sheet.name === 'Cipher Codes' || (sheet.columns && sheet.columns.some(c => c.key === 'cipher'));
+  const isCipher = sheet.name === 'Encryption Codes' || (sheet.columns && sheet.columns.some(c => c.key === 'cipher'));
   if (isCipher) {
     document.getElementById('page-subtitle').textContent = 'Encryption System';
     document.getElementById('total-stat').style.display = 'none';
@@ -170,7 +170,7 @@ function renderSpreadsheet() {
   const { sheet, rows } = currentSheetData;
 
   /* ── Check if this is the Cipher Sheet → custom visual layout ── */
-  if (sheet.name === 'Cipher Codes' || (sheet.columns && sheet.columns.some(c => c.key === 'cipher'))) {
+  if (sheet.name === 'Encryption Codes' || (sheet.columns && sheet.columns.some(c => c.key === 'cipher'))) {
     renderCipherSheet(container, sheet, rows);
     return;
   }
