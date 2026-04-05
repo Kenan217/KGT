@@ -1,0 +1,476 @@
+/* ═══════════════════════════════════════════
+   K.G.T. Spreadsheet Styles — PREMIUM
+   ═══════════════════════════════════════════ */
+
+.spreadsheet-container {
+  flex: 1;
+  overflow: auto;
+  padding: 0;
+  background: var(--bg-primary);
+}
+
+/* ═══ Spreadsheet Header — Premium Banner ═══ */
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 28px 32px;
+  background: linear-gradient(180deg, #0f0f1a 0%, #0a0a12 50%, #0c0c16 100%);
+  border-bottom: 1px solid rgba(196, 30, 30, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.sheet-header::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-red), var(--accent-gold), var(--accent-red), transparent);
+  opacity: 0.6;
+}
+
+.sheet-header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+}
+
+.sheet-header-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 12px rgba(196, 30, 30, 0.25));
+  transition: filter var(--transition-base);
+}
+
+.sheet-header-logo:hover {
+  filter: drop-shadow(0 0 18px rgba(196, 30, 30, 0.4));
+}
+
+.sheet-header-info {
+  text-align: center;
+}
+
+.sheet-header-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.sheet-header-total {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--accent-red);
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(196, 30, 30, 0.2);
+}
+
+/* ═══ Table Wrapper ═══ */
+.spreadsheet-table-wrapper {
+  padding: 16px 20px 24px;
+  overflow-x: auto;
+}
+
+/* ═══ Table ═══ */
+.spreadsheet-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.82rem;
+  min-width: 1100px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Column Header ── */
+.spreadsheet-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  background: linear-gradient(180deg, #181828 0%, #14141f 100%);
+  color: var(--accent-gold);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 2px solid var(--accent-red);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.spreadsheet-table thead th:not(:last-child) {
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ── Section Divider — Premium ── */
+.section-divider td {
+  background: linear-gradient(135deg, rgba(196, 30, 30, 0.08) 0%, rgba(212, 168, 75, 0.04) 50%, rgba(196, 30, 30, 0.08) 100%);
+  text-align: center;
+  padding: 12px 16px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border-top: 1px solid rgba(212, 168, 75, 0.15);
+  border-bottom: 1px solid rgba(212, 168, 75, 0.15);
+  position: relative;
+  text-shadow: 0 0 8px rgba(212, 168, 75, 0.15);
+}
+
+.section-divider td::before {
+  content: '━━━';
+  margin-right: 16px;
+  color: rgba(212, 168, 75, 0.25);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+}
+
+.section-divider td::after {
+  content: '━━━';
+  margin-left: 16px;
+  color: rgba(212, 168, 75, 0.25);
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+}
+
+/* ── Table Rows ── */
+.spreadsheet-table tbody tr {
+  transition: all var(--transition-fast);
+}
+
+.spreadsheet-table tbody tr:not(.section-divider):nth-child(even) {
+  background: rgba(255, 255, 255, 0.012);
+}
+
+.spreadsheet-table tbody tr:hover:not(.section-divider) {
+  background: rgba(196, 30, 30, 0.04);
+  box-shadow: inset 3px 0 0 var(--accent-red);
+}
+
+.spreadsheet-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+  white-space: nowrap;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all var(--transition-fast);
+  border-right: 1px solid rgba(255, 255, 255, 0.02);
+  font-weight: 400;
+}
+
+.spreadsheet-table tbody td:last-child {
+  border-right: none;
+}
+
+.spreadsheet-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ── Editable Cells ── */
+td.editable {
+  cursor: pointer;
+  position: relative;
+}
+
+td.editable::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-bottom: 5px solid rgba(196, 30, 30, 0.2);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+td.editable:hover::after {
+  opacity: 1;
+}
+
+td.editable:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+td.editing {
+  padding: 5px 8px;
+  background: rgba(196, 30, 30, 0.06) !important;
+}
+
+td.editing input,
+td.editing select {
+  width: 100%;
+  padding: 7px 12px;
+  background: var(--bg-primary);
+  border: 1px solid var(--accent-red);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(196, 30, 30, 0.12), 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+td.editing select {
+  cursor: pointer;
+}
+
+/* ── Cell Types — Premium badges ── */
+.cell-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.72rem;
+  text-align: center;
+  min-width: 65px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cell-text-bold {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Dropdown Cell Styles — Premium pills ── */
+.cell-dropdown {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Section dropdown colors */
+.cell-dropdown[data-value="Above Sections"] {
+  background: linear-gradient(135deg, #948d7a, #5c574b);
+  color: #fff;
+  border-color: rgba(52, 54, 56, 0.3);
+}
+
+.cell-dropdown[data-value="Above"] {
+  background: linear-gradient(135deg, #5c574b, #22201c);
+  color: #fff;
+  border-color: rgba(52, 54, 56, 0.3);
+}
+
+.cell-dropdown[data-value="KGT"] {
+  background: linear-gradient(135deg, #c41e1e, #8b1515);
+  color: #fff;
+  border-color: rgba(196, 30, 30, 0.3);
+}
+
+.cell-dropdown[data-value="NONE"] {
+  background: linear-gradient(135deg, #2a2a3a, #1e1e2d);
+  color: var(--text-muted);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.cell-dropdown[data-value="U.C.C"] {
+  background: linear-gradient(135deg, #811717, #5e1111);
+  color: #ffffff;
+  border-color: rgba(139, 21, 21, 0.4);
+}
+
+.cell-dropdown[data-value="Internal Affairs"] {
+  background: linear-gradient(135deg, #6a1313, #380b0b);
+  color: #fff;
+  border-color: rgba(196, 117, 30, 0.3);
+}
+
+
+.cell-dropdown[data-value="Above Squad"] {
+  background: linear-gradient(135deg, #948d7a, #5c574b);
+  color: #ffffff;
+  border-color: rgba(52, 54, 56, 0.3);
+}
+
+.cell-dropdown[data-value="Investigation S."] {
+  background: linear-gradient(135deg, #b10202, #790404);
+  color: #ffffff;
+  border-color: rgba(42, 94, 168, 0.3);
+}
+
+.cell-dropdown[data-value="D.O.C."] {
+  background: linear-gradient(135deg, #753800, #412001);
+  color: #ffffff;
+  border-color: rgba(42, 94, 168, 0.3);
+}
+
+.cell-dropdown[data-value="D.A.D."] {
+  background: linear-gradient(135deg, #541c1c, #301414);
+  color: #ffffff;
+  border-color: rgba(42, 94, 168, 0.3);
+}
+
+.cell-dropdown[data-value="N/A"] {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-dim);
+  border-color: rgba(255, 255, 255, 0.06);
+  box-shadow: none;
+}
+
+/* Status badges — pill style */
+.cell-badge[data-status="Active"] {
+  background: linear-gradient(135deg, #2d7a3a, #1e5c28);
+  box-shadow: 0 2px 8px rgba(45, 122, 58, 0.25);
+}
+
+.cell-badge[data-status="Inactive"] {
+  background: linear-gradient(135deg, #c41e1e, #8b1515);
+  box-shadow: 0 2px 8px rgba(196, 30, 30, 0.25);
+}
+
+.cell-badge[data-status="N/A"] {
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-dim);
+  box-shadow: none;
+}
+
+/* Legality badges for Prohibited Items */
+.cell-dropdown[data-value="غير قانوني"] {
+  background: linear-gradient(135deg, #c41e1e, #8b1515);
+  color: #fff;
+  border-color: rgba(196, 30, 30, 0.3);
+}
+
+.cell-dropdown[data-value="يستعمل بالقانون"] {
+  background: linear-gradient(135deg, #c4751e, #8b5415);
+  color: #fff;
+  border-color: rgba(196, 117, 30, 0.3);
+}
+
+.cell-dropdown[data-value="قانوني"] {
+  background: linear-gradient(135deg, #2d7a3a, #1e5c28);
+  color: #fff;
+  border-color: rgba(45, 122, 58, 0.3);
+}
+
+/* ── Row Action Buttons ── */
+.row-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+tr:hover .row-actions {
+  opacity: 1;
+}
+
+.row-action-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.row-action-btn:hover {
+  background: rgba(196, 30, 30, 0.12);
+  border-color: rgba(196, 30, 30, 0.3);
+  color: var(--accent-red);
+  transform: scale(1.05);
+}
+
+.row-action-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ═══ Arabic / RTL Support ═══ */
+.spreadsheet-table td[dir="rtl"],
+.spreadsheet-table th[dir="rtl"] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Auto-detect Arabic content alignment */
+.spreadsheet-table td {
+  unicode-bidi: plaintext;
+}
+
+/* ═══ Category & Number Cell Styles ═══ */
+.cell-category {
+  font-weight: 700 !important;
+  color: var(--accent-gold) !important;
+  letter-spacing: 0.5px;
+  border-left: 3px solid rgba(212, 168, 75, 0.4) !important;
+  background: rgba(212, 168, 75, 0.03) !important;
+  font-size: 0.84rem !important;
+  text-shadow: 0 0 8px rgba(212, 168, 75, 0.1);
+}
+
+.cell-number {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #80b0e0;
+}
+
+.cell-number-item {
+  color: #6db3f8 !important;
+  text-shadow: 0 0 6px rgba(109, 179, 248, 0.15);
+}
+
+.cell-number-tex {
+  color: #d4a84b !important;
+  text-shadow: 0 0 6px rgba(212, 168, 75, 0.15);
+}
+
+/* Grouped column header coloring for paired columns */
+.spreadsheet-table thead th:nth-child(odd):not(:first-child):not(:last-child) {
+  color: #6db3f8;
+}
+
+.spreadsheet-table thead th:nth-child(even):not(:first-child):not(:last-child) {
+  color: #d4a84b;
+}
+
+/* ═══ Responsive ═══ */
+@media (max-width: 1200px) {
+  .spreadsheet-table {
+    min-width: 900px;
+  }
+}
