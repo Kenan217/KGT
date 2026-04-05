@@ -63,6 +63,7 @@ export const api = {
   createSheet: (data) => request('/sheets', { method: 'POST', body: JSON.stringify(data) }),
   updateSheet: (id, data) => request(`/sheets/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
   deleteSheet: (id) => request(`/sheets/${id}`, { method: 'DELETE' }),
+  reorderSheets: (orders) => request('/sheets/reorder', { method: 'PUT', body: JSON.stringify({ orders }) }),
 
   /* Rows */
   addRow: (sheetId, data) => request(`/sheets/${sheetId}/rows`, { method: 'POST', body: JSON.stringify(data) }),

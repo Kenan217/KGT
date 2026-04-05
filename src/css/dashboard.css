@@ -226,6 +226,42 @@
   color: var(--accent-red);
 }
 
+/* ── Sheet Reorder Buttons ── */
+.sheet-reorder-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.nav-item.sheet-item:hover .sheet-reorder-btns {
+  opacity: 1;
+}
+
+.sheet-reorder-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 14px;
+  font-size: 0.5rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all var(--transition-fast);
+  user-select: none;
+  line-height: 1;
+}
+
+.sheet-reorder-btn:hover {
+  background: rgba(212, 168, 75, 0.15);
+  color: var(--accent-gold);
+  transform: scale(1.15);
+}
+
 .add-sheet-btn {
   border: 1px dashed var(--border-secondary) !important;
   color: var(--text-muted) !important;

@@ -14,6 +14,24 @@ router.get('/', authMiddleware, async (req, res) => {
   }
 });
 
+/* ── Reorder sheets (admin) ── */
+router.put('/reorder', authMiddleware, adminOnly, async (req, res) => {
+  try {
+    const { orders } = req.body; // [{ id, order }, ...]
+    if (!Array.isArray(orders)) return res.status(400).json({ error: 'orders array required' });
+
+    const ops = orders.map(item =>
+      Sheet.findByIdAndUpdate(item.id, { order: item.order })
+    );
+    await Promise.all(ops);
+
+    const sheets = await Sheet.find().sort({ order: 1 });
+    res.json(sheets);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 /* ── Get single sheet with rows ── */
 router.get('/:id', authMiddleware, async (req, res) => {
   try {

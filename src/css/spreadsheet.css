@@ -154,6 +154,63 @@
   letter-spacing: 2px;
 }
 
+/* ── Section Action Buttons (Edit/Delete) ── */
+.section-divider td {
+  position: relative;
+}
+
+.section-title-text {
+  pointer-events: none;
+}
+
+.section-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 12px;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+  vertical-align: middle;
+}
+
+.section-divider:hover .section-actions {
+  opacity: 1;
+}
+
+.section-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 5px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  padding: 0;
+}
+
+.section-action-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+.section-edit-btn:hover {
+  background: rgba(212, 168, 75, 0.12);
+  border-color: rgba(212, 168, 75, 0.3);
+  color: var(--accent-gold);
+  transform: scale(1.1);
+}
+
+.section-delete-btn:hover {
+  background: rgba(196, 30, 30, 0.12);
+  border-color: rgba(196, 30, 30, 0.3);
+  color: var(--accent-red);
+  transform: scale(1.1);
+}
+
 /* ── Table Rows ── */
 .spreadsheet-table tbody tr {
   transition: all var(--transition-fast);
