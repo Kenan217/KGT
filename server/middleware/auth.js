@@ -2,14 +2,20 @@ import jwt from 'jsonwebtoken';
 
 export function authMiddleware(req, res, next) {
   const token = req.headers.authorization?.split(' ')[1];
-  if (!token) return res.status(401).json({ error: 'Access denied. No token provided.' });
+  
+  if (!token) {
+    req.user = { role: 'viewer', username: 'Guest', displayName: 'Guest' };
+    return next();
+  }
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded;
     next();
   } catch (err) {
-    res.status(401).json({ error: 'Invalid or expired token.' });
+    // If token is invalid/expired, they are still a guest for public routes
+    req.user = { role: 'viewer', username: 'Guest', displayName: 'Guest' };
+    next();
   }
 }
 

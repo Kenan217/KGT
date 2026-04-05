@@ -68,16 +68,7 @@ document.getElementById('modal-overlay')?.addEventListener('click', (e) => {
   if (e.target === e.currentTarget) closeModal();
 });
 
-/* ═══ Time Display ═══ */
-function updateTime() {
-  const el = document.getElementById('topbar-time');
-  if (!el) return;
-  const now = new Date();
-  el.textContent = now.toLocaleString('en-GB', {
-    day: '2-digit', month: '2-digit', year: 'numeric',
-    hour: '2-digit', minute: '2-digit', second: '2-digit'
-  });
-}
+
 
 /* ═══ Navigation ═══ */
 let currentPage = 'dashboard';
@@ -113,28 +104,36 @@ async function init() {
   /* Check if already authenticated */
   const user = checkAuth();
 
+  /* Always initialize the login modal logic */
+  initLogin((user) => {
+    window.location.reload(); // Reload immediately to apply admin state
+  });
+
   if (user) {
     showApp(user);
   } else {
-    showLogin();
+    showApp({ role: 'viewer', username: 'Guest', displayName: 'Guest' });
   }
 }
 
-function showLogin() {
-  document.getElementById('login-page').classList.add('active');
-  document.getElementById('app-page').classList.remove('active');
-  initParticles();
-  initLogin((user) => showApp(user));
-}
-
 async function showApp(user) {
-  document.getElementById('login-page').classList.remove('active');
-  document.getElementById('app-page').classList.add('active');
 
   /* Set user info in sidebar */
   document.getElementById('user-name').textContent = user.displayName || user.username;
   document.getElementById('user-role').textContent = user.role === 'admin' ? 'Administrator' : 'Viewer';
   document.getElementById('user-avatar').textContent = (user.displayName || user.username).charAt(0).toUpperCase();
+
+  /* Toggle Auth / Logout buttons based on role */
+  const headerLoginBtn = document.getElementById('header-login-btn');
+  const sidebarLogoutBtn = document.getElementById('logout-btn');
+  
+  if (user.role === 'admin') {
+    if (headerLoginBtn) headerLoginBtn.style.display = 'none';
+    if (sidebarLogoutBtn) sidebarLogoutBtn.style.display = 'flex';
+  } else {
+    if (headerLoginBtn) headerLoginBtn.style.display = 'flex';
+    if (sidebarLogoutBtn) sidebarLogoutBtn.style.display = 'none';
+  }
 
   /* Init modules */
   await initDashboard(user);
@@ -155,10 +154,6 @@ async function showApp(user) {
       logout();
     }
   });
-
-  /* Time */
-  updateTime();
-  setInterval(updateTime, 1000);
 
   switchPage('dashboard');
 }

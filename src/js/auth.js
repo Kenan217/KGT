@@ -95,21 +95,39 @@ export function initParticles() {
 }
 
 export function initLogin(onSuccess) {
-  const form = document.getElementById('login-form');
-  const btn = document.getElementById('login-btn');
-  const errorEl = document.getElementById('login-error');
+  const modalOverlay = document.getElementById('auth-modal-overlay');
+  const loginBtn = document.getElementById('header-login-btn');
+  const closeBtn = document.getElementById('auth-modal-close');
+  const cancelBtn = document.getElementById('auth-modal-cancel');
+  const confirmBtn = document.getElementById('auth-modal-confirm');
+  const form = document.getElementById('auth-login-form');
+  const errorEl = document.getElementById('auth-login-error');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('login-username').value.trim();
-    const password = document.getElementById('login-password').value;
+  function openModal() {
+    if (modalOverlay) modalOverlay.classList.add('active');
+    document.getElementById('auth-username').focus();
+    errorEl.textContent = '';
+  }
+
+  function closeModal() {
+    if (modalOverlay) modalOverlay.classList.remove('active');
+  }
+
+  if (loginBtn) loginBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (cancelBtn) cancelBtn.addEventListener('click', closeModal);
+
+  async function handleLogin() {
+    const username = document.getElementById('auth-username').value.trim();
+    const password = document.getElementById('auth-password').value;
 
     if (!username || !password) {
       errorEl.textContent = 'Please enter both username and password.';
       return;
     }
 
-    btn.classList.add('loading');
+    confirmBtn.textContent = 'Authenticating...';
+    confirmBtn.disabled = true;
     errorEl.textContent = '';
 
     try {
@@ -117,14 +135,23 @@ export function initLogin(onSuccess) {
       api.setToken(data.token);
       api.setUser(data.user);
 
-      btn.classList.remove('loading');
+      confirmBtn.textContent = 'Authenticate';
+      confirmBtn.disabled = false;
+      closeModal();
       onSuccess(data.user);
     } catch (err) {
-      btn.classList.remove('loading');
+      confirmBtn.textContent = 'Authenticate';
+      confirmBtn.disabled = false;
       errorEl.textContent = err.message || 'Authentication failed.';
       form.classList.add('shake');
       setTimeout(() => form.classList.remove('shake'), 500);
     }
+  }
+
+  if (confirmBtn) confirmBtn.addEventListener('click', handleLogin);
+  if (form) form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleLogin();
   });
 }
 
