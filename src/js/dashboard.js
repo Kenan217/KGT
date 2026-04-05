@@ -151,7 +151,7 @@ function updatePageInfo() {
 
   const isCipher = sheet.name === 'Cipher Codes' || (sheet.columns && sheet.columns.some(c => c.key === 'cipher'));
   if (isCipher) {
-    document.getElementById('page-subtitle').textContent = 'نظام الشفرات';
+    document.getElementById('page-subtitle').textContent = 'Encryption System';
     document.getElementById('total-stat').style.display = 'none';
   } else {
     document.getElementById('page-subtitle').textContent = 'Personnel Management';
@@ -743,7 +743,7 @@ function renderCipherSheet(container, sheet, rows) {
         </svg>
       </div>
       <div class="cipher-banner-info">
-        <h2>نظام الشفرات</h2>
+        <h2>Encryption System</h2>
         <p>Cipher Reference Sheet — Shape Code System</p>
       </div>
     </div>
